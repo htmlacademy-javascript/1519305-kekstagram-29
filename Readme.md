@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Максим Янбухтин](https://up.htmlacademy.ru/javascript/29/user/1519305).
-* Наставник: `Неизвестно`.
+* Наставник: [Александр Соболев](https://htmlacademy.ru/profile/sanjoyz).
 
 ---
 
