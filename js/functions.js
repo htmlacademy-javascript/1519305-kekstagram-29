@@ -6,13 +6,7 @@ const checkStringLength = (string, length) => {
   }
   return false;
 };
-
-// Проверка работы функции
-
-console.log(checkStringLength('проверяемая строка', 20));
-console.log(checkStringLength('проверяемая строка', 18));
-console.log(checkStringLength('проверяемая строка', 10));
-
+checkStringLength();
 
 //Функция для проверки, является ли строка палиндромом
 
@@ -27,22 +21,15 @@ const checkForPalindrome = (string) => {
   }
   return false;
 };
-
-// Проверка работы функции
-
-console.log(checkForPalindrome('топот'));
-console.log(checkForPalindrome('ДовОд'));
-console.log(checkForPalindrome('Кекс'));
-console.log(checkForPalindrome('Лёша на полке клопа нашёл '));
-
+checkForPalindrome();
 
 //Функция извлекает число из строки
 
 const getNumberFromString = (string) => {
-  const checkoutString = (string).toString();
+  const checkoutString = String(string);
   let numbers;
   let result = '';
-  for (let i in checkoutString) {
+  for (const i in checkoutString) {
     numbers = parseInt(checkoutString[i], 10);
     if (!Number.isNaN(numbers)) {
       result += numbers;
@@ -50,11 +37,4 @@ const getNumberFromString = (string) => {
   }
   return result;
 };
-
-// Проверка работы функции
-
-console.log(getNumberFromString('2023 год'));
-console.log(getNumberFromString('ECMAScript 2022'));
-console.log(getNumberFromString('1 кефир, 0.5 батона'));
-console.log(getNumberFromString('агент 007'));
-console.log(getNumberFromString('а я томат'));
+getNumberFromString();
