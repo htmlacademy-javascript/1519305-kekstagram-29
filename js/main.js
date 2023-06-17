@@ -6,6 +6,7 @@ const MIN_NUMBER_FOR_COMMENT = 0;
 const MAX_NUMBER_FOR_COMMENT = 30;
 const MIN_NUMBERS_FOR_LIKES = 15;
 const MAX_NUMBERS_FOR_LIKES = 200;
+const MAX_NUMBERS_FOR_MESSAGE = 2;
 
 //Массивы
 const messages = [
@@ -81,9 +82,9 @@ const generatePhotoId = createGeneratorInRange(MIN_NUMBER_FOR_FUNCTIONS, MAX_NUM
 const generateMessageId = createGeneratorInRange(MIN_NUMBER_FOR_FUNCTIONS, Infinity);
 
 //Генерируем сообщение
-const generateMessage = (fn) => {
+const generateMessage = () => {
   const message = [];
-  while (message.length < fn) {
+  while (message.length < getRandomInteger(MIN_NUMBER_FOR_FUNCTIONS, MAX_NUMBERS_FOR_MESSAGE)) {
     message.push(getRandomArrayElement(messages));
   }
   return message;
