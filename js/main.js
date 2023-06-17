@@ -109,4 +109,4 @@ const createPhoto = () => ({
 const generatePhoto = Array.from({ length: MAX_NUMBER_FOR_FUNCTIONS }, createPhoto);
 
 // eslint-disable-next-line no-unused-expressions
-console.log(generatePhoto);
+generatePhoto();
