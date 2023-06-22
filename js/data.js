@@ -42,15 +42,15 @@ const descriptions = [
 ];
 
 //Модульные функции
-const getMinNumberForFunctions = () => MIN_NUMBER_FOR_FUNCTIONS;
-const getMaxNumberForFunctions = () => MAX_NUMBER_FOR_FUNCTIONS;
-const getMaxNumberForAvatar = () => MAX_NUMBER_FOR_AVATAR;
-const getMinNumberForComment = () => MIN_NUMBER_FOR_COMMENT;
-const getMaxNumberForComment = () => MAX_NUMBER_FOR_COMMENT;
-const getMinNumberForLikes = () => MIN_NUMBERS_FOR_LIKES;
-const getMaxNumberForLikes = () => MAX_NUMBERS_FOR_LIKES;
-const getMessagesArray = () => messages;
-const getAvatarNamesArray = () => avatarNames;
-const getDescriptionsArray = () => descriptions;
+const getMinNumberForFunctions = (minNumberForFunctions) => minNumberForFunctions === MIN_NUMBER_FOR_FUNCTIONS;
+const getMaxNumberForFunctions = (maxNumberForFunctions) => maxNumberForFunctions === MAX_NUMBER_FOR_FUNCTIONS;
+const getMaxNumberForAvatar = (maxNumberForAvatar) => maxNumberForAvatar === MAX_NUMBER_FOR_AVATAR;
+const getMinNumberForComment = (minNumberForComment) => minNumberForComment === MIN_NUMBER_FOR_COMMENT;
+const getMaxNumberForComment = (maxNumberForComment) => maxNumberForComment === MAX_NUMBER_FOR_COMMENT;
+const getMinNumberForLikes = (minNumberForLikes) => minNumberForLikes === MIN_NUMBERS_FOR_LIKES;
+const getMaxNumberForLikes = (maxNumberForLikes) => maxNumberForLikes === MAX_NUMBERS_FOR_LIKES;
+const getMessagesArray = (messagesArray) => messagesArray === messages;
+const getAvatarNamesArray = (avatarNamesArray) => avatarNamesArray === avatarNames;
+const getDescriptionsArray = (descriptionsArray) => descriptionsArray === descriptions;
 
 export { getMinNumberForFunctions, getMaxNumberForFunctions, getMaxNumberForAvatar, getMinNumberForComment, getMaxNumberForComment, getMinNumberForLikes, getMaxNumberForLikes, getMessagesArray, getAvatarNamesArray, getDescriptionsArray};

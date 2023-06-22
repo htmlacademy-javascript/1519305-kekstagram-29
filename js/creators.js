@@ -31,7 +31,7 @@ const createPhoto = () => ({
   comment: Array.from({ length: getRandomInteger(getMinNumberForComment, getMaxNumberForComment) }, createComment),
 });
 
-const generatePhoto = () => Array.from({ length: getMaxNumberForFunctions }, createPhoto);
+const generatePhoto = Array.from({ length: getMaxNumberForFunctions }, createPhoto);
 
 export { generatePhoto };
 
