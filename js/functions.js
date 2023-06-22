@@ -38,3 +38,23 @@ const getNumberFromString = (string) => {
   return result;
 };
 getNumberFromString();
+
+// Проверка на переработку
+
+const TIME_IN_MINUTES = 60;
+
+const isNotCrunch = (workDayStart, workDayEnd, meetingTime, meetingDuration) => {
+  const doMinutes = (time) => {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * TIME_IN_MINUTES + minutes;
+  };
+  const meeting = doMinutes(meetingTime) + meetingDuration;
+
+  if (doMinutes(workDayStart) <= meeting && meeting <= doMinutes(workDayEnd)) {
+    return true;
+  }
+
+  return false;
+};
+
+isNotCrunch();
