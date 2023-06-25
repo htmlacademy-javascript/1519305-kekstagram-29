@@ -1,3 +1,3 @@
-import { generatePhoto } from './creators.js';
+import {usersPhotos} from './miniature-viewer.js';
 
-generatePhoto();
+usersPhotos();
