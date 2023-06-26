@@ -41,16 +41,4 @@ const descriptions = [
   'Потрачено',
 ];
 
-//Модульные функции
-const getMinNumberForFunctions = () => MIN_NUMBER_FOR_FUNCTIONS;
-const getMaxNumberForFunctions = () => MAX_NUMBER_FOR_FUNCTIONS;
-const getMaxNumberForAvatar = () => MAX_NUMBER_FOR_AVATAR;
-const getMinNumberForComment = () => MIN_NUMBER_FOR_COMMENT;
-const getMaxNumberForComment = () => MAX_NUMBER_FOR_COMMENT;
-const getMinNumberForLikes = () => MIN_NUMBERS_FOR_LIKES;
-const getMaxNumberForLikes = () => MAX_NUMBERS_FOR_LIKES;
-const getMessagesArray = () => messages;
-const getAvatarNamesArray = () => avatarNames;
-const getDescriptionsArray = () => descriptions;
-
-export { getMinNumberForFunctions, getMaxNumberForFunctions, getMaxNumberForAvatar, getMinNumberForComment, getMaxNumberForComment, getMinNumberForLikes, getMaxNumberForLikes, getMessagesArray, getAvatarNamesArray, getDescriptionsArray};
+export { MIN_NUMBER_FOR_FUNCTIONS, MAX_NUMBER_FOR_FUNCTIONS, MAX_NUMBER_FOR_AVATAR, MIN_NUMBER_FOR_COMMENT, MAX_NUMBER_FOR_COMMENT, MIN_NUMBERS_FOR_LIKES, MAX_NUMBERS_FOR_LIKES, messages, avatarNames, descriptions};
