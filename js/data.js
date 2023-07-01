@@ -1,3 +1,4 @@
+import {getRandomInteger, createGeneratorInRange, getRandomArrayElement} from './utils.js';
 //Константы
 const MIN_NUMBER_FOR_FUNCTIONS = 1;
 const MAX_NUMBER_FOR_FUNCTIONS = 25;
@@ -41,4 +42,34 @@ const descriptions = [
   'Потрачено',
 ];
 
-export { MIN_NUMBER_FOR_FUNCTIONS, MAX_NUMBER_FOR_FUNCTIONS, MAX_NUMBER_FOR_AVATAR, MIN_NUMBER_FOR_COMMENT, MAX_NUMBER_FOR_COMMENT, MIN_NUMBERS_FOR_LIKES, MAX_NUMBERS_FOR_LIKES, messages, avatarNames, descriptions};
+const generateMessageId = createGeneratorInRange(MIN_NUMBER_FOR_FUNCTIONS, Infinity);
+const generatePhotoId = createGeneratorInRange(MIN_NUMBER_FOR_FUNCTIONS, MAX_NUMBER_FOR_FUNCTIONS);
+
+const generateMessage = () => {
+  const message = [];
+  while (message.length < getRandomInteger(MIN_NUMBER_FOR_FUNCTIONS, MAX_NUMBER_FOR_AVATAR)) {
+    message.push(getRandomArrayElement(messages));
+  }
+  return message;
+};
+
+const createComment = () => ({
+  id: generateMessageId(),
+  avatar: `img/avatar-${getRandomInteger(MIN_NUMBER_FOR_FUNCTIONS, MAX_NUMBER_FOR_AVATAR)}.svg`,
+  message: generateMessage(getRandomInteger(MIN_NUMBER_FOR_FUNCTIONS, 2)).join(' '),
+  name: getRandomArrayElement(avatarNames),
+});
+
+
+const createPhoto = () => ({
+  id: generatePhotoId(),
+  url: `photos/${getRandomInteger(MIN_NUMBER_FOR_FUNCTIONS, MAX_NUMBER_FOR_FUNCTIONS)}.jpg`,
+  description: getRandomArrayElement(descriptions),
+  likes: getRandomInteger(MIN_NUMBERS_FOR_LIKES, MAX_NUMBERS_FOR_LIKES),
+  comments: Array.from({ length: getRandomInteger(MIN_NUMBER_FOR_COMMENT, MAX_NUMBER_FOR_COMMENT) }, createComment),
+});
+
+const generatePhotos = () => Array.from({ length: MAX_NUMBER_FOR_FUNCTIONS }, createPhoto);
+
+export {generatePhotos};
+
