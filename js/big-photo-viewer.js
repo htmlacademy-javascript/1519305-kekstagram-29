@@ -8,13 +8,13 @@ const loadMoreComments = bigPhoto.querySelector('.comments-loader');
 const liElement = comments.querySelector('li');
 
 const onCloseButtonClick = () => {
-  bigPhoto.classList.add('hidden');
+  closeBigPhoto();
 };
 
 const onEscKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    onCloseButtonClick();
+    closeBigPhoto();
   }
 };
 
@@ -52,14 +52,15 @@ const fillTemplate = (photo) => {
   moreCommentsClickHandler = renderCommentsLoad(photo.comments);
   moreCommentsClickHandler();
 };
-const closeBigPhoto = () => {
+
+function closeBigPhoto () {
   document.body.classList.remove('modal-open');
-  onCloseButtonClick();
+  bigPhoto.classList.add('hidden');
 
   closeButton.removeEventListener('click', onCloseButtonClick);
   loadMoreComments.removeEventListener('click', moreCommentsClickHandler);
   document.removeEventListener('keydown', onEscKeyDown);
-};
+}
 
 const showBigPhoto = (photo) => {
   fillTemplate(photo);
