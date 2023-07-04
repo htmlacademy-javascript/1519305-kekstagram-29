@@ -1,20 +1,34 @@
-import { generatePhoto } from './creators.js';
+import {showBigPhoto} from './big-photo-viewer.js';
 
-const otherUsersPhotos = document.querySelector('.pictures');
-const pictureTemplate = document.querySelector('#picture');
-const fillPhotoData = generatePhoto();
-const photosFragment = document.createDocumentFragment();
+const miniatureClickHandler = (photos) => (evt) => {
+  evt.preventDefault();
+  const photoId = evt.target.parentNode.dataset.photoId;
+  showBigPhoto(photos.find((photo) => photo.id === parseInt(photoId, 10)));
+};
 
-fillPhotoData.forEach(({url, description, likes, comment}) => {
-  const photoElement = pictureTemplate.content.cloneNode(true);
-  photoElement.querySelector('.picture__img').src = url;
-  photoElement.querySelector('.picture__img').alt = description;
-  photoElement.querySelector('.picture__likes').textContent = likes;
-  photoElement.querySelector('.picture__comments').textContent = comment.length;
-  photosFragment.append(photoElement);
-});
+const createMiniature = (template, photo) => {
+  const miniatureElement = template.querySelector('.picture').cloneNode(true);
+  miniatureElement.querySelector('.picture__img').src = photo.url;
+  miniatureElement.querySelector('.picture__likes').textContent = photo.likes;
+  miniatureElement.querySelector('.picture__comments').textContent = photo.comments.length;
+  miniatureElement.dataset.photoId = photo.id;
+  return miniatureElement;
+};
 
-const usersPhotos = () => otherUsersPhotos.append(photosFragment);
+const createMiniatures = (photos) => {
+  const fragment = document.createDocumentFragment();
+  const templateContent = document.querySelector('#picture').content;
+  const onMiniatureClick = miniatureClickHandler(photos);
 
-export {usersPhotos};
+  photos.forEach((photo) => {
+    const miniature = createMiniature(templateContent, photo);
+    miniature.addEventListener('click', onMiniatureClick);
+    fragment.append(miniature);
+  });
+
+  const photoContainer = document.querySelector('.pictures');
+  photoContainer.append(fragment);
+};
+
+export {createMiniatures};
 

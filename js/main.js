@@ -1,3 +1,5 @@
-import {usersPhotos} from './miniature-viewer.js';
+import {createMiniatures} from './miniature-viewer.js';
+import {generatePhotos} from './data.js';
 
-usersPhotos();
+const showPhotos = generatePhotos();
+createMiniatures(showPhotos);
