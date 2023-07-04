@@ -7,22 +7,22 @@ const liElement = comments.querySelector('li');
 
 
 const onCloseButtonClick = () => {
-  bigPhoto.classList.add('hidden');
+  closeBigPhoto();
 };
 
 const onEscKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    onCloseButtonClick();
+    closeBigPhoto();
   }
 };
 
-const closeBigPhoto = () => {
+function closeBigPhoto () {
   document.body.classList.remove('modal-open');
-  onCloseButtonClick();
-  closeButton.removeEventListener('click', onCloseButtonClick);
+  bigPhoto.classList.add('hidden');
+  closeButton.removeEventListener('click', closeBigPhoto);
   document.removeEventListener('keydown', onEscKeyDown);
-};
+}
 
 const fillComments = (photoComments) => {
   comments.innerHTML = '';
@@ -54,8 +54,8 @@ const showBigPhoto = (photo) => {
 
   document.body.classList.add('modal-open');
 
-  closeButton.addEventListener('click', closeBigPhoto);
-  document.addEventListener('keydown', closeBigPhoto);
+  closeButton.addEventListener('click', onCloseButtonClick);
+  document.addEventListener('keydown', onEscKeyDown);
 };
 
 export {showBigPhoto};
