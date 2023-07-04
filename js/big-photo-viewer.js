@@ -18,6 +18,7 @@ const onEscKeyDown = (evt) => {
   }
 };
 
+
 const renderCommentsLoad = (photoComments) => {
   let commentsShowed = 0;
   const allComments = photoComments.length;
@@ -68,8 +69,9 @@ const showBigPhoto = (photo) => {
   bigPhoto.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
+
   loadMoreComments.addEventListener('click', moreCommentsClickHandler);
-  closeButton.addEventListener('click', closeBigPhoto);
+  closeButton.addEventListener('click', onCloseButtonClick);
   document.addEventListener('keydown', onEscKeyDown);
 };
 
