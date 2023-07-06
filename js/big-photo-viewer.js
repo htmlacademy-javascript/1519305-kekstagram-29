@@ -18,6 +18,7 @@ const onEscKeyDown = (evt) => {
   }
 };
 
+
 const renderCommentsLoad = (photoComments) => {
   let commentsShowed = 0;
   const allComments = photoComments.length;
