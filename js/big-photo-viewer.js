@@ -41,7 +41,7 @@ const renderCommentsLoad = (photoComments) => {
   };
 };
 
-let moreCommentsClickHandler = () => { };
+let onClickShowMoreComments = () => { };
 
 const fillTemplate = (photo) => {
   loadMoreComments.classList.remove('hidden');
@@ -49,8 +49,8 @@ const fillTemplate = (photo) => {
   bigPhoto.querySelector('.likes-count').textContent = photo.likes;
   bigPhoto.querySelector('.social__caption').textContent = photo.description;
   comments.innerHTML = '';
-  moreCommentsClickHandler = renderCommentsLoad(photo.comments);
-  moreCommentsClickHandler();
+  onClickShowMoreComments = renderCommentsLoad(photo.comments);
+  onClickShowMoreComments();
 };
 
 function closeBigPhoto () {
@@ -58,7 +58,7 @@ function closeBigPhoto () {
   bigPhoto.classList.add('hidden');
 
   closeButton.removeEventListener('click', onCloseButtonClick);
-  loadMoreComments.removeEventListener('click', moreCommentsClickHandler);
+  loadMoreComments.removeEventListener('click', onClickShowMoreComments);
   document.removeEventListener('keydown', onEscKeyDown);
 }
 
@@ -68,7 +68,7 @@ const showBigPhoto = (photo) => {
   bigPhoto.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
-  loadMoreComments.addEventListener('click', moreCommentsClickHandler);
+  loadMoreComments.addEventListener('click', onClickShowMoreComments);
   closeButton.addEventListener('click', closeBigPhoto);
   document.addEventListener('keydown', onEscKeyDown);
 };
