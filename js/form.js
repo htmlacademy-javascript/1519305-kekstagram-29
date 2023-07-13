@@ -1,5 +1,7 @@
 import { isEscapeKey } from './utils.js';
 import { SERVER_URL, MAX_HASHTAG_COUNT } from './data.js';
+import { resetScale } from './scale.js';
+import { resetEffects } from './effects.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
@@ -44,6 +46,8 @@ function closePreviw() {
   document.body.classList.remove('modal-open');
 
   document.removeEventListener('keydown', onPreviewEscKeyDown);
+  resetEffects();
+  resetScale();
 }
 
 const onPreviewSubmit = (evt) => {
