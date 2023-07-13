@@ -1,11 +1,12 @@
 import { isEscapeKey } from './utils.js';
+import { SERVER_URL, MAX_HASHTAG_COUNT } from './data.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadForm = document.querySelector('.img-upload__form');
 uploadForm.method = 'post';
 uploadForm.enctype = 'multipart/form-data';
-uploadForm.action = 'https://29.javascript.pages.academy/kekstagram';
+uploadForm.action = SERVER_URL;
 const hashtag = document.querySelector('.text__hashtags');
 hashtag.required = true;
 const commentText = document.querySelector('.text__description');
@@ -68,7 +69,7 @@ const isHashtagUnique = (hashTags) => {
 };
 const validateHashtags = (value) => {
   const hashtags = value?.toLowerCase().split(' ').filter((tag) => tag !== '');
-  return hashtags.length <= 5 && isHashtagUnique(hashtags) && hashtags.every(validateHashtag);
+  return hashtags.length <= MAX_HASHTAG_COUNT && isHashtagUnique(hashtags) && hashtags.every(validateHashtag);
 };
 
 const onPhotoSelect = () => {

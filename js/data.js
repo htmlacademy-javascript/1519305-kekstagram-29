@@ -8,6 +8,8 @@ const MAX_NUMBER_FOR_COMMENT = 30;
 const MIN_NUMBERS_FOR_LIKES = 15;
 const MAX_NUMBERS_FOR_LIKES = 200;
 const COMMENT_LOAD_STEP = 5;
+const SERVER_URL = 'https://29.javascript.pages.academy/kekstagram';
+const MAX_HASHTAG_COUNT = 5;
 //Массивы
 const messages = [
   'Всё отлично!',
@@ -71,5 +73,5 @@ const createPhoto = () => ({
 
 const generatePhotos = () => Array.from({ length: MAX_NUMBER_FOR_FUNCTIONS }, createPhoto);
 
-export { generatePhotos, COMMENT_LOAD_STEP };
+export { generatePhotos, COMMENT_LOAD_STEP, SERVER_URL, MAX_HASHTAG_COUNT };
 
