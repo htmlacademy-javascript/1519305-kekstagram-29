@@ -3,7 +3,7 @@ import { SCALE_STEP,DEFAULT_SIZE,MIN_SIZE_VALUE } from './data.js';
 const smallerSize = document.querySelector('.scale__control--smaller');
 const biggerSize = document.querySelector('.scale__control--bigger');
 const sizeValue = document.querySelector('.scale__control--value');
-const photoPreview = document.querySelector('.img-upload__preview img');
+const photoPreview = document.querySelector('.img-upload__preview');
 
 const scalePhoto = (size) => {
   photoPreview.style.transform = `scale(${size / 100})`;
