@@ -26,9 +26,9 @@ const updateSlider = () => {
 
   if (isDefaultEffect()) {
     hideSlider();
+  } else {
+    showSlider();
   }
-
-  showSlider();
 };
 
 const onEffectsChange = (evt) => {

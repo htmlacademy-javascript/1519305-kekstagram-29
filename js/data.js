@@ -13,6 +13,8 @@ const MAX_HASHTAG_COUNT = 5;
 const SCALE_STEP = 25;
 const DEFAULT_SIZE = 100;
 const MIN_SIZE_VALUE = 25;
+const ALERT_SHOW_TIME = 5000;
+
 //Массивы
 const messages = [
   'Всё отлично!',
@@ -126,5 +128,5 @@ const createPhoto = () => ({
 
 const generatePhotos = () => Array.from({ length: MAX_NUMBER_FOR_FUNCTIONS }, createPhoto);
 
-export { generatePhotos, COMMENT_LOAD_STEP, SERVER_URL, MAX_HASHTAG_COUNT,SCALE_STEP,DEFAULT_SIZE,MIN_SIZE_VALUE,EFFECTS,DEFAULT_EFFECT };
+export { generatePhotos, COMMENT_LOAD_STEP, SERVER_URL, MAX_HASHTAG_COUNT,SCALE_STEP,DEFAULT_SIZE,MIN_SIZE_VALUE,EFFECTS,DEFAULT_EFFECT, ALERT_SHOW_TIME };
 
