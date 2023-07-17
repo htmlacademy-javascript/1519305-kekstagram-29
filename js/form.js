@@ -13,23 +13,27 @@ const hashtag = document.querySelector('.text__hashtags');
 hashtag.required = true;
 const commentText = document.querySelector('.text__description');
 const uploadCloseButton = document.querySelector('.img-upload__cancel');
+const submitButton = document.querySelector('.img-upload__submit');
 
+const submitButtonText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Публикую...'
+};
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
-  errorTextTag: 'span',
-  errorTextClass: 'form__error',
+  errorTextClass: 'img-upload__field-wrapper--error',
 });
 
 const onPreviewCloseClick = () => {
-  closePreviw();
+  closePreview();
 };
 
 const onPreviewEscKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closePreviw();
+    closePreview();
   }
 };
 
@@ -39,8 +43,9 @@ const onInputKeyDown = (evt) => {
   }
 };
 
-function closePreviw() {
+function closePreview() {
   uploadForm.reset();
+  pristine.reset();
 
   uploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
@@ -53,8 +58,7 @@ function closePreviw() {
 const onPreviewSubmit = (evt) => {
   evt.preventDefault();
   if (pristine.validate()) {
-    uploadForm.submit();
-    closePreviw();
+    closePreview();
   }
 };
 
@@ -93,4 +97,26 @@ const renderPreviewForm = () => {
   pristine.addValidator(hashtag, validateHashtags, '<br>Хэштег должен начинаться с # и быть не больше 19 симоволов');
 };
 
-export { renderPreviewForm };
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = submitButtonText.SENDING;
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = submitButtonText.IDLE;
+};
+
+const onFormSubmit = (callback) => {
+  uploadForm.addEventListener('submit', async(evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+
+    if (isValid) {
+      blockSubmitButton();
+      callback(new FormData(uploadForm));
+    }
+  });
+};
+
+export { renderPreviewForm, onFormSubmit, unblockSubmitButton, closePreview };
