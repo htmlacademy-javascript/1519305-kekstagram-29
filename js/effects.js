@@ -1,8 +1,8 @@
 import { EFFECTS, DEFAULT_EFFECT } from './data.js';
-import { photoPreview } from './scale.js';
 
 let chosenEffect = DEFAULT_EFFECT;
 
+const chosenPhoto = document.querySelector('.img-upload__preview img');
 const photoFilter = document.querySelector('.effects');
 const slider = document.querySelector('.effect-level__slider');
 const sliderLevel = document.querySelector('.img-upload__effect-level');
@@ -37,7 +37,7 @@ const onEffectsChange = (evt) => {
   }
 
   chosenEffect = EFFECTS.find((effect) => effect.name === evt.target.value);
-  photoPreview.className = `effects__preview--${chosenEffect.name}`;
+  chosenPhoto.className = `effects__preview--${chosenEffect.name}`;
   updateSlider();
 };
 
@@ -55,8 +55,8 @@ const initiateSlider = () => {
 
 const onSliderUpdate = () => {
   const sliderValue = slider.noUiSlider.get();
-  photoPreview.style.photoFilter = isDefaultEffect() ?
-    DEFAULT_EFFECT.style
+  chosenPhoto.style.filter = isDefaultEffect()
+    ? DEFAULT_EFFECT.style
     : `${chosenEffect.style}(${sliderValue}${chosenEffect.unit})`;
   effectLevel.value = sliderValue;
 };

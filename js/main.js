@@ -18,12 +18,13 @@ onFormSubmit(async (data) => {
   }
 });
 
+onScalePhotoClick();
+renderEffect();
+
 try {
   const data = await getData();
   createMiniatures(data);
   renderPreviewForm(data);
-  onScalePhotoClick();
-  renderEffect();
 } catch (err) {
   showAlert(err.message);
 }
