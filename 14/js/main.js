@@ -1,5 +1,4 @@
 import {createMiniatures} from './miniature-viewer.js';
-import {generatePhotos} from './data.js';
 import { renderPreviewForm, onFormSubmit, unblockSubmitButton, closePreview } from './form.js';
 import { onScalePhotoClick } from './scale.js';
 import { renderEffect } from './effects.js';
@@ -19,13 +18,13 @@ onFormSubmit(async (data) => {
   }
 });
 
+onScalePhotoClick();
+renderEffect();
+
 try {
   const data = await getData();
-  generatePhotos(data);
   createMiniatures(data);
   renderPreviewForm(data);
-  onScalePhotoClick();
-  renderEffect();
 } catch (err) {
   showAlert(err.message);
 }

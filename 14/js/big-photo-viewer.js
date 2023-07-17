@@ -26,7 +26,7 @@ const renderCommentsLoad = (photoComments) => {
     const firstCommentLoad = commentsShowed;
     const showCommentsCount = Math.min(allComments, commentsShowed + COMMENT_LOAD_STEP);
     for (let i = firstCommentLoad; i < showCommentsCount; i++) {
-      const { avatar, name, message } = photoComments[i];
+      const { avatar, name, message} = photoComments[i];
       const newComment = liElement.cloneNode(true);
       const photo = newComment.querySelector('.social__picture');
       photo.src = avatar;
@@ -47,6 +47,7 @@ let onClickShowMoreComments = () => { };
 const fillTemplate = (photo) => {
   loadMoreComments.classList.remove('hidden');
   bigPhoto.querySelector('.big-picture__img img').src = photo.url;
+  bigPhoto.querySelector('.big-picture__img img').alt = photo.description;
   bigPhoto.querySelector('.likes-count').textContent = photo.likes;
   bigPhoto.querySelector('.social__caption').textContent = photo.description;
   comments.innerHTML = '';

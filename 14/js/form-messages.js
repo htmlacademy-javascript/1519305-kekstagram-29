@@ -58,7 +58,7 @@ const onErrorDocumentClick = (evt) => {
 const showErrorMessage = () => {
   const errorModal = errorTemplate.cloneNode(true);
   document.body.append(errorModal);
-  document.body.classList.add('has-modal');
+  document.body.classList.add('modal-open');
 
   errorModal.querySelector('.error__button').addEventListener('click', onErrorCloseButtonClick);
   document.addEventListener('click', onErrorDocumentClick);
@@ -67,7 +67,7 @@ const showErrorMessage = () => {
 
 function closeErrorMessage() {
   document.body.querySelector('.error').remove();
-  document.body.classList.remove('has-modal');
+  document.body.classList.remove('modal-open');
 
   document.removeEventListener('click', onErrorDocumentClick);
   document.removeEventListener('keydown', onErrorDocumentKeydown);

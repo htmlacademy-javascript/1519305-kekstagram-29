@@ -58,7 +58,6 @@ function closePreview() {
 const onPreviewSubmit = (evt) => {
   evt.preventDefault();
   if (pristine.validate()) {
-    uploadForm.submit();
     closePreview();
   }
 };
