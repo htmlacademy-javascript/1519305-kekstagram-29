@@ -6,7 +6,15 @@ const SCALE_STEP = 25;
 const DEFAULT_SIZE = 100;
 const MIN_SIZE_VALUE = 25;
 const ALERT_SHOW_TIME = 5000;
+const RANDOM_PHOTOS_COUNT = 10;
+const TIMEOUT = 500;
 
+const SubmitButtonText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Публикую...'
+};
+
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 const EFFECTS = [
   {
     name: 'none',
@@ -57,7 +65,8 @@ const EFFECTS = [
     unit: '',
   }
 ];
+
 const DEFAULT_EFFECT = EFFECTS[0];
 
-export { COMMENT_LOAD_STEP, SERVER_URL, MAX_HASHTAG_COUNT,SCALE_STEP,DEFAULT_SIZE,MIN_SIZE_VALUE,EFFECTS,DEFAULT_EFFECT, ALERT_SHOW_TIME };
+export { COMMENT_LOAD_STEP, SERVER_URL, MAX_HASHTAG_COUNT,SCALE_STEP,DEFAULT_SIZE,MIN_SIZE_VALUE,EFFECTS,DEFAULT_EFFECT, ALERT_SHOW_TIME, RANDOM_PHOTOS_COUNT, TIMEOUT, SubmitButtonText, FILE_TYPES };
 

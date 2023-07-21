@@ -3,21 +3,13 @@ import { isEscapeKey } from './utils.js';
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 
-function isEscPress(evt, callback) {
-
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    callback();
-  }
-}
-
 const onSuccessCloseButtonClick = () => {
   closeSuccessMessage();
 };
 
-const onCloseSuccessMessage = (evt) => isEscPress(evt, closeSuccessMessage);
+const onCloseSuccessMessage = (evt) => isEscapePress(evt, closeSuccessMessage);
 
-const onSuccessDocumentClick = (evt) => {
+const onSuccessPageClick = (evt) => {
   evt.preventDefault();
 
   if (!evt.target.closest('.success__inner')) {
@@ -30,14 +22,14 @@ const showSuccessMessage = () => {
   document.body.append(successModal);
 
   successModal.querySelector('.success__button').addEventListener('click', onSuccessCloseButtonClick);
-  document.addEventListener('click', onSuccessDocumentClick);
+  document.addEventListener('click', onSuccessPageClick);
   document.addEventListener('keydown', onCloseSuccessMessage);
 };
 
 function closeSuccessMessage() {
   document.body.querySelector('.success').remove();
 
-  document.removeEventListener('click', onSuccessDocumentClick);
+  document.removeEventListener('click', onSuccessPageClick);
   document.removeEventListener('keydown', onCloseSuccessMessage);
 }
 
@@ -45,7 +37,7 @@ const onErrorCloseButtonClick = () => {
   closeErrorMessage();
 };
 
-const onErrorDocumentKeydown = (evt) => isEscPress(evt, closeErrorMessage);
+const onErrorPageKeydown = (evt) => isEscapePress(evt, closeErrorMessage);
 
 const onErrorDocumentClick = (evt) => {
   evt.preventDefault();
@@ -62,15 +54,23 @@ const showErrorMessage = () => {
 
   errorModal.querySelector('.error__button').addEventListener('click', onErrorCloseButtonClick);
   document.addEventListener('click', onErrorDocumentClick);
-  document.addEventListener('keydown', onErrorDocumentKeydown);
+  document.addEventListener('keydown', onErrorPageKeydown);
 };
+
+function isEscapePress(evt, cb) {
+
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    cb();
+  }
+}
 
 function closeErrorMessage() {
   document.body.querySelector('.error').remove();
   document.body.classList.remove('modal-open');
 
   document.removeEventListener('click', onErrorDocumentClick);
-  document.removeEventListener('keydown', onErrorDocumentKeydown);
+  document.removeEventListener('keydown', onErrorPageKeydown);
 }
 
 export { showErrorMessage, showSuccessMessage };

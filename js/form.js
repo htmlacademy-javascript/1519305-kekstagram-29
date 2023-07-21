@@ -1,7 +1,7 @@
 import { isEscapeKey } from './utils.js';
-import { SERVER_URL, MAX_HASHTAG_COUNT } from './data.js';
+import { SERVER_URL, MAX_HASHTAG_COUNT, SubmitButtonText } from './data.js';
 import { resetScale } from './scale.js';
-import { resetEffects } from './effects.js';
+import { resetEffect } from './effects.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
@@ -10,15 +10,9 @@ uploadForm.method = 'post';
 uploadForm.enctype = 'multipart/form-data';
 uploadForm.action = SERVER_URL;
 const hashtag = document.querySelector('.text__hashtags');
-hashtag.required = true;
 const commentText = document.querySelector('.text__description');
 const uploadCloseButton = document.querySelector('.img-upload__cancel');
 const submitButton = document.querySelector('.img-upload__submit');
-
-const submitButtonText = {
-  IDLE: 'Опубликовать',
-  SENDING: 'Публикую...'
-};
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
@@ -30,7 +24,7 @@ const onPreviewCloseClick = () => {
   closePreview();
 };
 
-const onPreviewEscKeyDown = (evt) => {
+const onPreviewEscapeKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closePreview();
@@ -42,18 +36,6 @@ const onInputKeyDown = (evt) => {
     evt.stopPropagation();
   }
 };
-
-function closePreview() {
-  uploadForm.reset();
-  pristine.reset();
-
-  uploadOverlay.classList.add('hidden');
-  document.body.classList.remove('modal-open');
-
-  document.removeEventListener('keydown', onPreviewEscKeyDown);
-  resetEffects();
-  resetScale();
-}
 
 const onPreviewSubmit = (evt) => {
   evt.preventDefault();
@@ -85,7 +67,7 @@ const onPhotoSelect = () => {
   document.body.classList.add('modal-open');
 
   uploadCloseButton.addEventListener('click', onPreviewCloseClick);
-  document.addEventListener('keydown', onPreviewEscKeyDown);
+  document.addEventListener('keydown', onPreviewEscapeKeyDown);
 };
 
 const renderPreviewForm = () => {
@@ -94,29 +76,41 @@ const renderPreviewForm = () => {
   hashtag.addEventListener('keydown', onInputKeyDown);
   commentText.addEventListener('keydown', onInputKeyDown);
 
-  pristine.addValidator(hashtag, validateHashtags, '<br>Хэштег должен начинаться с # и быть не больше 19 симоволов');
+  pristine.addValidator(hashtag, validateHashtags, 'Хэштег должен начинаться с # и быть не больше 19 симоволов');
 };
 
 const blockSubmitButton = () => {
   submitButton.disabled = true;
-  submitButton.textContent = submitButtonText.SENDING;
+  submitButton.textContent = SubmitButtonText.SENDING;
 };
 
 const unblockSubmitButton = () => {
   submitButton.disabled = false;
-  submitButton.textContent = submitButtonText.IDLE;
+  submitButton.textContent = SubmitButtonText.IDLE;
 };
 
-const onFormSubmit = (callback) => {
+const onFormSubmit = (cb) => {
   uploadForm.addEventListener('submit', async(evt) => {
     evt.preventDefault();
     const isValid = pristine.validate();
 
     if (isValid) {
       blockSubmitButton();
-      callback(new FormData(uploadForm));
+      cb(new FormData(uploadForm));
     }
   });
 };
+
+function closePreview() {
+  uploadForm.reset();
+  pristine.reset();
+
+  uploadOverlay.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+
+  document.removeEventListener('keydown', onPreviewEscapeKeyDown);
+  resetEffect();
+  resetScale();
+}
 
 export { renderPreviewForm, onFormSubmit, unblockSubmitButton, closePreview };

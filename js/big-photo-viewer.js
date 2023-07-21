@@ -11,7 +11,7 @@ const onCloseButtonClick = () => {
   closeBigPhoto();
 };
 
-const onEscKeyDown = (evt) => {
+const onEscapeKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeBigPhoto();
@@ -19,7 +19,7 @@ const onEscKeyDown = (evt) => {
 };
 
 
-const renderCommentsLoad = (photoComments) => {
+const renderComments = (photoComments) => {
   let commentsShowed = 0;
   const allComments = photoComments.length;
   return () => {
@@ -42,7 +42,7 @@ const renderCommentsLoad = (photoComments) => {
   };
 };
 
-let onClickShowMoreComments = () => { };
+let onShowMoreCommentsClick = () => { };
 
 const fillTemplate = (photo) => {
   loadMoreComments.classList.remove('hidden');
@@ -51,18 +51,9 @@ const fillTemplate = (photo) => {
   bigPhoto.querySelector('.likes-count').textContent = photo.likes;
   bigPhoto.querySelector('.social__caption').textContent = photo.description;
   comments.innerHTML = '';
-  onClickShowMoreComments = renderCommentsLoad(photo.comments);
-  onClickShowMoreComments();
+  onShowMoreCommentsClick = renderComments(photo.comments);
+  onShowMoreCommentsClick();
 };
-
-function closeBigPhoto () {
-  document.body.classList.remove('modal-open');
-  bigPhoto.classList.add('hidden');
-
-  closeButton.removeEventListener('click', onCloseButtonClick);
-  loadMoreComments.removeEventListener('click', onClickShowMoreComments);
-  document.removeEventListener('keydown', onEscKeyDown);
-}
 
 const showBigPhoto = (photo) => {
   fillTemplate(photo);
@@ -70,9 +61,19 @@ const showBigPhoto = (photo) => {
   bigPhoto.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
-  loadMoreComments.addEventListener('click', onClickShowMoreComments);
+  loadMoreComments.addEventListener('click', onShowMoreCommentsClick);
   closeButton.addEventListener('click', closeBigPhoto);
-  document.addEventListener('keydown', onEscKeyDown);
+  document.addEventListener('keydown', onEscapeKeyDown);
 };
+
+function closeBigPhoto () {
+  document.body.classList.remove('modal-open');
+  bigPhoto.classList.add('hidden');
+
+  closeButton.removeEventListener('click', onCloseButtonClick);
+  loadMoreComments.removeEventListener('click', onShowMoreCommentsClick);
+  document.removeEventListener('keydown', onEscapeKeyDown);
+}
+
 
 export {showBigPhoto};

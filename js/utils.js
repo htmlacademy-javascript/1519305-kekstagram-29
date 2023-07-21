@@ -23,4 +23,13 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export { isEscapeKey, showAlert };
+const debounce = (cb, timeoutDelay = 500) => {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => cb.apply(this, rest), timeoutDelay);
+  };
+};
+
+export { isEscapeKey, showAlert, debounce };
