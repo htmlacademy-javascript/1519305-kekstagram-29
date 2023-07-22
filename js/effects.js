@@ -61,7 +61,7 @@ const onSliderUpdate = () => {
   effectLevel.value = sliderValue;
 };
 
-const resetEffects = () => {
+const resetEffect = () => {
   chosenEffect = DEFAULT_EFFECT;
   updateSlider();
 };
@@ -74,5 +74,5 @@ const renderEffect = () => {
 
 };
 
-export { resetEffects, renderEffect };
+export { resetEffect, renderEffect };
 

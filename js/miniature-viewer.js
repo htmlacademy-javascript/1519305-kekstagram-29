@@ -1,12 +1,12 @@
 import {showBigPhoto} from './big-photo-viewer.js';
 
-const miniatureClickHandler = (photos) => (evt) => {
+const onMiniatureClick = (photos) => (evt) => {
   evt.preventDefault();
   const photoId = evt.target.parentNode.dataset.photoId;
   showBigPhoto(photos.find((photo) => photo.id === parseInt(photoId, 10)));
 };
 
-const createMiniature = (template, photo) => {
+const renderMiniature = (template, photo) => {
   const miniatureElement = template.querySelector('.picture').cloneNode(true);
   miniatureElement.querySelector('.picture__img').src = photo.url;
   miniatureElement.querySelector('.picture__likes').textContent = photo.likes;
@@ -18,11 +18,11 @@ const createMiniature = (template, photo) => {
 const createMiniatures = (photos) => {
   const fragment = document.createDocumentFragment();
   const templateContent = document.querySelector('#picture').content;
-  const onMiniatureClick = miniatureClickHandler(photos);
+  const miniatureClick = onMiniatureClick(photos);
 
   photos.forEach((photo) => {
-    const miniature = createMiniature(templateContent, photo);
-    miniature.addEventListener('click', onMiniatureClick);
+    const miniature = renderMiniature(templateContent, photo);
+    miniature.addEventListener('click', miniatureClick);
     fragment.append(miniature);
   });
 
@@ -30,5 +30,5 @@ const createMiniatures = (photos) => {
   photoContainer.append(fragment);
 };
 
-export {createMiniatures};
+export { createMiniatures };
 

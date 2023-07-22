@@ -1,5 +1,7 @@
 import { SERVER_URL } from './data.js';
 
+// Удалить коммент для для пуша следующей верти ДЗ
+
 const Route = {
   GET_DATA: '/data',
   SEND_DATA: '/',
