@@ -1,4 +1,4 @@
-import { COMMENT_LOAD_STEP } from './data.js';
+import { COMMENT_LOAD_STEP } from './constants-database.js';
 import { isEscapeKey } from './utils.js';
 
 const bigPhoto = document.querySelector('.big-picture');

@@ -1,6 +1,4 @@
-import { SERVER_URL } from './data.js';
-
-// Удалить коммент для для пуша следующей верти ДЗ
+import { SERVER_URL } from './constants-database.js';
 
 const Route = {
   GET_DATA: '/data',

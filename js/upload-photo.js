@@ -1,4 +1,4 @@
-import { FILE_TYPES } from './data.js';
+import { FILE_TYPES } from './constants-database.js';
 
 const fileChooser = document.querySelector('.img-upload__input[type=file]');
 const preview = document.querySelector('.img-upload__preview img');

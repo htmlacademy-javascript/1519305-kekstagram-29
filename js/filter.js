@@ -1,6 +1,6 @@
 import { debounce } from './utils.js';
 import { createMiniatures } from './miniature-viewer.js';
-import { RANDOM_PHOTOS_COUNT, TIMEOUT } from './data.js';
+import { RANDOM_PHOTOS_COUNT, TIMEOUT } from './constants-database.js';
 
 const photoFilter = document.querySelector('.img-filters');
 const filterForm = document.querySelector('.img-filters__form');

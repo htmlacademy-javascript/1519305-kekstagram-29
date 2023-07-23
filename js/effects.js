@@ -1,4 +1,4 @@
-import { EFFECTS, DEFAULT_EFFECT } from './data.js';
+import { EFFECTS, DEFAULT_EFFECT } from './constants-database.js';
 
 let chosenEffect = DEFAULT_EFFECT;
 
