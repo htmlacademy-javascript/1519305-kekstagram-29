@@ -1,6 +1,6 @@
 import {showBigPhoto} from './big-photo-viewer.js';
 
-const onMiniatureClick = (photos) => (evt) => {
+const miniatureClick = (photos) => (evt) => {
   evt.preventDefault();
   const photoId = evt.target.parentNode.dataset.photoId;
   showBigPhoto(photos.find((photo) => photo.id === parseInt(photoId, 10)));
@@ -18,11 +18,11 @@ const renderMiniature = (template, photo) => {
 const createMiniatures = (photos) => {
   const fragment = document.createDocumentFragment();
   const templateContent = document.querySelector('#picture').content;
-  const miniatureClick = onMiniatureClick(photos);
+  const onMiniatureClick = miniatureClick(photos);
 
   photos.forEach((photo) => {
     const miniature = renderMiniature(templateContent, photo);
-    miniature.addEventListener('click', miniatureClick);
+    miniature.addEventListener('click', onMiniatureClick);
     fragment.append(miniature);
   });
 

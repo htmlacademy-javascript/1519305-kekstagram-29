@@ -1,4 +1,4 @@
-import { SCALE_STEP,DEFAULT_SIZE,MIN_SIZE_VALUE } from './data.js';
+import { SCALE_STEP,DEFAULT_SIZE,MIN_SIZE_VALUE } from './constants-database.js';
 
 const smallerSize = document.querySelector('.scale__control--smaller');
 const biggerSize = document.querySelector('.scale__control--bigger');

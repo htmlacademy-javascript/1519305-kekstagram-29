@@ -1,5 +1,5 @@
 import { isEscapeKey } from './utils.js';
-import { SERVER_URL, MAX_HASHTAG_COUNT, SubmitButtonText } from './data.js';
+import { SERVER_URL, MAX_HASHTAG_COUNT, SubmitButtonText } from './constants-database.js';
 import { resetScale } from './scale.js';
 import { resetEffect } from './effects.js';
 
