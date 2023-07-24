@@ -2,6 +2,7 @@ import { FILE_TYPES } from './constants-database.js';
 
 const fileChooser = document.querySelector('.img-upload__input[type=file]');
 const preview = document.querySelector('.img-upload__preview img');
+const effectsPreview = document.querySelectorAll('.effects__preview');
 
 const setPreviewPhotoListener = () => {
   fileChooser.addEventListener('change', () => {
@@ -11,7 +12,9 @@ const setPreviewPhotoListener = () => {
     const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
     if (matches) {
-      preview.src = URL.createObjectURL(file);
+      const fileUrl = URL.createObjectURL(file);
+      preview.src = fileUrl;
+      effectsPreview.forEach((effect) => (effect.style.backgroundImage = `url(${fileUrl})`));
     }
   });
 };

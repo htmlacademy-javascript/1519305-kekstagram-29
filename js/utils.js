@@ -1,4 +1,4 @@
-import { ALERT_SHOW_TIME } from './constants-database.js';
+import { ALERT_SHOW_TIME, TIMEOUT } from './constants-database.js';
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
@@ -23,7 +23,7 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-const debounce = (cb, timeoutDelay = 500) => {
+const debounce = (cb, timeoutDelay = TIMEOUT) => {
   let timeoutId;
 
   return (...rest) => {
