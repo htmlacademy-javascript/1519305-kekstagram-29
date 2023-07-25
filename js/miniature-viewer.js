@@ -9,6 +9,7 @@ const miniatureClick = (photos) => (evt) => {
 const renderMiniature = (template, photo) => {
   const miniatureElement = template.querySelector('.picture').cloneNode(true);
   miniatureElement.querySelector('.picture__img').src = photo.url;
+  miniatureElement.querySelector('.picture__img').alt = photo.description;
   miniatureElement.querySelector('.picture__likes').textContent = photo.likes;
   miniatureElement.querySelector('.picture__comments').textContent = photo.comments.length;
   miniatureElement.dataset.photoId = photo.id;
