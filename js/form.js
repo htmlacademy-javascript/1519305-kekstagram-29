@@ -13,6 +13,7 @@ const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const uploadCancelButton = uploadOverlay.querySelector('.img-upload__cancel');
 const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
+commentField.maxLength = 140;
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
