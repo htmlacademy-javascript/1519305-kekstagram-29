@@ -35,7 +35,7 @@ const showSuccessMessage = () => {
   document.body.addEventListener('keydown',onCloseSuccessMessage);
 };
 
-const onErrorDocumentClick = (evt) => {
+const onErrorPageClick = (evt) => {
   evt.preventDefault();
   const isClickOnModalError = evt.target.dataset.errorMessage !== undefined;
 
@@ -51,7 +51,7 @@ const onCloseErrorMessage = (evt) => onPageKeydown(evt,closeErrorMessage);
 function closeErrorMessage () {
   document.body.querySelector('.error').remove();
   document.body.classList.remove('has-modal');
-  document.body.removeEventListener('click',onErrorDocumentClick);
+  document.body.removeEventListener('click',onErrorPageClick);
   document.removeEventListener('keydown', onCloseErrorMessage);
 }
 
@@ -62,7 +62,7 @@ const showErrorMessage = () => {
   document.body.classList.add('has-modal');
   errorButton.addEventListener('click',onErrorButtonclick);
   document.body.addEventListener('keydown',onCloseErrorMessage);
-  document.body.addEventListener('click',onErrorDocumentClick);
+  document.body.addEventListener('click',onErrorPageClick);
 
 };
 
