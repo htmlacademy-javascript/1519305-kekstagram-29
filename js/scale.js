@@ -1,42 +1,37 @@
-import { SCALE_STEP,DEFAULT_SIZE,MIN_SIZE_VALUE } from './constants-database.js';
+import {DEFAULT_SCALE, SCALE_STEP, MIN_SCALE,MAX_SCALE} from './constants-database.js';
 
-const smallerSize = document.querySelector('.scale__control--smaller');
-const biggerSize = document.querySelector('.scale__control--bigger');
-const sizeValue = document.querySelector('.scale__control--value');
-const photoPreview = document.querySelector('.img-upload__preview img');
+const modalElement = document.querySelector ('.img-upload');
+const smallerButtonElement = modalElement.querySelector('.scale__control--smaller');
+const biggerButtonElement = modalElement.querySelector('.scale__control--bigger');
+const scaleFieldElement = modalElement.querySelector('.scale__control--value');
+const imageElement = modalElement.querySelector('.img-upload__preview img');
 
-const scalePhoto = (size) => {
-  photoPreview.style.transform = `scale(${size / 100})`;
-  sizeValue.value = `${size}%`;
+let currentScaleValue = parseInt(scaleFieldElement.value, 10);
+
+const scalePhoto = (value) => {
+  imageElement.style.transform = `scale(${value / 100})`;
+  scaleFieldElement.value = `${value}%`;
 };
 
-const onSmallerSizeClick = () => {
-  const newValueElement = parseInt(sizeValue.value, 10);
-  let newSmallValue = newValueElement - SCALE_STEP;
-
-  if (newSmallValue < MIN_SIZE_VALUE) {
-    newSmallValue = MIN_SIZE_VALUE;
+const onSmallerButtonClick = () => {
+  currentScaleValue -= SCALE_STEP;
+  if (currentScaleValue < MIN_SCALE) {
+    currentScaleValue = MIN_SCALE;
   }
-
-  scalePhoto(newSmallValue);
+  scalePhoto(currentScaleValue);
 };
 
-const onBiggerSizeClick = () => {
-  const newValueElement = parseInt(sizeValue.value, 10);
-  let newBigValue = newValueElement + SCALE_STEP;
-
-  if (newBigValue > DEFAULT_SIZE) {
-    newBigValue = DEFAULT_SIZE;
+const onBiggerButtonClick = () => {
+  currentScaleValue += SCALE_STEP;
+  if (currentScaleValue > MAX_SCALE) {
+    currentScaleValue = MAX_SCALE;
   }
-
-  scalePhoto(newBigValue);
+  scalePhoto(currentScaleValue);
 };
 
-const resetScale = () => scalePhoto(DEFAULT_SIZE);
+const resetZoom = () => scalePhoto(DEFAULT_SCALE);
 
-const onScalePhotoClick = () => {
-  smallerSize.addEventListener('click', onSmallerSizeClick);
-  biggerSize.addEventListener('click', onBiggerSizeClick);
-};
+smallerButtonElement.addEventListener('click', onSmallerButtonClick);
+biggerButtonElement.addEventListener('click', onBiggerButtonClick);
 
-export { resetScale, onScalePhotoClick };
+export {resetZoom, imageElement};
