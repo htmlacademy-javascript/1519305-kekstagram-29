@@ -45,8 +45,9 @@ bigImageCancel.addEventListener('click', () =>
 
 const showComment = ({avatar, name, message}) => {
   const newComment = commentItem.cloneNode(true);
-  newComment.querySelector('.social__picture').src = avatar;
-  newComment.querySelector('.social__picture').alt = name;
+  const newCommentPicture = newComment.querySelector('.social__picture');
+  newCommentPicture.src = avatar;
+  newCommentPicture.alt = name;
   newComment.querySelector('.social__text').textContent = message;
   return newComment;
 };
