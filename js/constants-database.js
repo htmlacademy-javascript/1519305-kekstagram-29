@@ -6,6 +6,7 @@ const DEFAULT_SCALE = 100;
 const SCALE_STEP = 25;
 const MIN_SCALE = 25;
 const MAX_SCALE = 100;
+const MAX_COMMENT_LENGTH = 140;
 
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 
@@ -23,6 +24,12 @@ const Filter = {
   DEFAULT: 'filter-default',
   RANDOM: 'filter-random',
   DISCUSSED: 'filter-discussed',
+};
+
+const ValidationPriority = {
+  FIRST: 1,
+  SECOND: 2,
+  THIRD: 3,
 };
 
 const defaultFilter = {
@@ -83,4 +90,4 @@ const DEFAULT_EFFECT = defaultFilter;
 
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
-export {MAX_TAG_COUNT, VALID_SYMBOLS,ErrorText, SubmitButtonText, COMMENTS_PER_PORTION, DEFAULT_SCALE, SCALE_STEP, MIN_SCALE,MAX_SCALE,defaultFilter, chromeFilter, sepiaFilter,marvinFilter,phobosFilter,heatFilter,DEFAULT_EFFECT, Filter, MAX_RANDOM_MINIATURES,TIME_OUT_OF_DELAY, FILE_TYPES};
+export {MAX_TAG_COUNT, VALID_SYMBOLS,ErrorText, SubmitButtonText, COMMENTS_PER_PORTION, DEFAULT_SCALE, SCALE_STEP, MIN_SCALE,MAX_SCALE,defaultFilter, chromeFilter, sepiaFilter,marvinFilter,phobosFilter,heatFilter,DEFAULT_EFFECT, Filter, MAX_RANDOM_MINIATURES,TIME_OUT_OF_DELAY, FILE_TYPES, MAX_COMMENT_LENGTH, ValidationPriority};

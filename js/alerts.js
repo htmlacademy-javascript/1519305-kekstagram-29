@@ -17,7 +17,7 @@ const onSuccessPageClick = (evt) => {
     closeSuccessMessage();
   }
 };
-const onSuccesButtonClick = () => closeSuccessMessage();
+const onSuccessButtonClick = () => closeSuccessMessage();
 
 const onCloseSuccessMessage = (evt) => onPageKeydown(evt,closeSuccessMessage);
 
@@ -30,7 +30,7 @@ function closeSuccessMessage () {
 const showSuccessMessage = () => {
   const successBlock = successTemplate.cloneNode(true);
   document.body.append(successBlock);
-  successBlock.querySelector('.success__button').addEventListener('click', onSuccesButtonClick);
+  successBlock.querySelector('.success__button').addEventListener('click', onSuccessButtonClick);
   document.body.addEventListener('click',onSuccessPageClick);
   document.body.addEventListener('keydown',onCloseSuccessMessage);
 };
@@ -44,7 +44,7 @@ const onErrorPageClick = (evt) => {
   }
 };
 
-const onErrorButtonclick = () => closeErrorMessage();
+const onErrorButtonСlick = () => closeErrorMessage();
 
 const onCloseErrorMessage = (evt) => onPageKeydown(evt,closeErrorMessage);
 
@@ -60,7 +60,7 @@ const showErrorMessage = () => {
   const errorButton = errorBlock.querySelector('.error__button');
   document.body.append(errorBlock);
   document.body.classList.add('has-modal');
-  errorButton.addEventListener('click',onErrorButtonclick);
+  errorButton.addEventListener('click',onErrorButtonСlick);
   document.body.addEventListener('keydown',onCloseErrorMessage);
   document.body.addEventListener('click',onErrorPageClick);
 

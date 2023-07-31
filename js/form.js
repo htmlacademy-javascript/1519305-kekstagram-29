@@ -3,23 +3,24 @@ import { resetEffects } from './slider.js';
 import { sendData } from './api.js';
 import { showPreviewPhoto } from './upload-img.js';
 import { showErrorMessage, showSuccessMessage } from './alerts.js';
-import {MAX_TAG_COUNT, VALID_SYMBOLS,ErrorText, SubmitButtonText} from './constants-database.js';
+import {MAX_TAG_COUNT, VALID_SYMBOLS,ErrorText, SubmitButtonText, MAX_COMMENT_LENGTH, ValidationPriority} from './constants-database.js';
 
 const body = document.body;
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadControl = uploadForm.querySelector('#upload-file');
 const sendFormButton = uploadForm.querySelector('.img-upload__submit');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
-const uploadCancelButton = uploadOverlay.querySelector('.img-upload__cancel');
+const onUploadCancelButtonClick = uploadOverlay.querySelector('.img-upload__cancel');
 const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
-commentField.maxLength = 140;
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper__error',
 });
+
+const validateCommentInput = (value) => value.length <= MAX_COMMENT_LENGTH;
 
 const isTextFieldFocused = () =>
   document.activeElement === hashtagField ||
@@ -41,7 +42,7 @@ const openModal = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onPageKeydown);
-  uploadCancelButton.addEventListener('click', closeModal);
+  onUploadCancelButtonClick.addEventListener('click', closeModal);
   hashtagField.addEventListener('input', disableSendButton);
 };
 
@@ -49,7 +50,7 @@ function closeModal () {
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onPageKeydown);
-  uploadCancelButton.removeEventListener('click', closeModal);
+  onUploadCancelButtonClick.removeEventListener('click', closeModal);
   hashtagField.removeEventListener('input', disableSendButton);
   uploadForm.reset();
   pristine.reset();
@@ -68,11 +69,13 @@ const isUniqueTags = (value) => {
   return lowerCaseTags.length === new Set(lowerCaseTags).size;
 };
 
+pristine.addValidator(commentField, validateCommentInput);
+
 pristine.addValidator(
   hashtagField,
   isValidTagsCount,
   ErrorText.INVALID_COUNT,
-  3,
+  ValidationPriority.THIRD,
   true
 );
 
@@ -80,7 +83,7 @@ pristine.addValidator(
   hashtagField,
   isValidTag,
   ErrorText.INVALID_PATTERN,
-  2,
+  ValidationPriority.SECOND,
   true
 );
 
@@ -88,7 +91,7 @@ pristine.addValidator(
   hashtagField,
   isUniqueTags,
   ErrorText.NOT_UNIQUE,
-  1,
+  ValidationPriority.FIRST,
   true
 );
 
