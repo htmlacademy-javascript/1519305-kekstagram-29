@@ -10,7 +10,7 @@ const uploadForm = document.querySelector('.img-upload__form');
 const uploadControl = uploadForm.querySelector('#upload-file');
 const sendFormButton = uploadForm.querySelector('.img-upload__submit');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
-const onUploadCancelButtonClick = uploadOverlay.querySelector('.img-upload__cancel');
+const uploadCancelButton = uploadOverlay.querySelector('.img-upload__cancel');
 const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 
@@ -29,7 +29,7 @@ const isTextFieldFocused = () =>
 const onPageKeydown = (evt) => {
   if (evt.key === 'Escape' && !isTextFieldFocused()) {
     evt.preventDefault();
-    closeModal();
+    onCloseModalButtonClick();
   }
 };
 
@@ -42,15 +42,15 @@ const openModal = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onPageKeydown);
-  onUploadCancelButtonClick.addEventListener('click', closeModal);
+  uploadCancelButton.addEventListener('click', onCloseModalButtonClick);
   hashtagField.addEventListener('input', disableSendButton);
 };
 
-function closeModal () {
+function onCloseModalButtonClick () {
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onPageKeydown);
-  onUploadCancelButtonClick.removeEventListener('click', closeModal);
+  uploadCancelButton.removeEventListener('click', onCloseModalButtonClick);
   hashtagField.removeEventListener('input', disableSendButton);
   uploadForm.reset();
   pristine.reset();
@@ -121,7 +121,7 @@ const setUserFormSubmit = () => {
       const formData = new FormData(evt.target);
       sendData(formData)
         .then(()=>{
-          closeModal();
+          onCloseModalButtonClick();
           showSuccessMessage();
         })
         .catch(() => {
